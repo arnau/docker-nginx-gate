@@ -32,8 +32,17 @@ token:
        -d '{"sub": "arnau", "iss": "local"}'
 .PHONY: sign
 
+test: test-secure test-secure-admin
+.PHONY: test
+
 test-secure:
 	curl -i \
        -H 'Authorization: Bearer $(TOKEN)' \
        -XGET http://localhost:1080/secure
 .PHONY: test-secure
+
+test-secure-admin:
+	curl -i \
+       -H 'Authorization: Bearer $(TOKEN)' \
+       -XGET http://localhost:1080/secure/admin
+.PHONY: test-secure-admin

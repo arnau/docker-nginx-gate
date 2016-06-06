@@ -6,6 +6,8 @@ local utils = require("utils")
 local secret = utils.consume_secret(os.getenv("JWT_SECRET"))
 local M = {}
 
+M.validators = validators
+
 function M.sign()
   ngx.req.read_body()
 
@@ -22,14 +24,14 @@ end
 function M.auth(claim_spec)
   local token, err = utils.extract_token(ngx.var.http_Authorization)
 
-  if err ~= nil then
+  if not token then
     ngx.log(ngx.WARN, err)
     ngx.exit(ngx.HTTP_UNAUTHORIZED)
   end
 
   ngx.log(ngx.DEBUG, "Token: " .. token)
 
-  if claim_spec == nil then
+  if not claim_spec then
     claim_spec = {
       sub = validators.opt_matches("^[a-z]+$"),
       iss = validators.equals_any_of({ "local" }),

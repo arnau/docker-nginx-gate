@@ -26,6 +26,7 @@ function M.auth(claim_spec)
 
   if not token then
     ngx.log(ngx.WARN, err)
+    ngx.header["WWW-Authenticate"] = "Bearer"
     ngx.exit(ngx.HTTP_UNAUTHORIZED)
   end
 
@@ -43,6 +44,7 @@ function M.auth(claim_spec)
   local jwt_obj = jwt:verify(secret, token, claim_spec)
   if not jwt_obj.verified then
     ngx.log(ngx.WARN, "Invalid token: " .. jwt_obj.reason)
+    ngx.header["WWW-Authenticate"] = 'Bearer error="invalid_token", error="' .. jwt_obj.reason .. '"'
     ngx.exit(ngx.HTTP_UNAUTHORIZED)
   end
 

@@ -28,9 +28,10 @@ logs:
 	docker logs -f gate
 .PHONY: logs
 
+token: PAYLOAD = {"sub": "arnau", "iss": "local"}
 token:
 	curl -XPOST http://localhost:1080/sign \
-       -d '{"sub": "arnau", "iss": "local"}'
+       -d '$(PAYLOAD)'
 .PHONY: sign
 
 test: test-secure test-secure-admin

@@ -32,13 +32,13 @@ end
 -- Returns a pair of `token, err` where one will carry a string and the other
 -- will be `nil`.
 function M.extract_token(auth_header)
-  if auth_header == nil then
+  if not auth_header then
     return auth_header, "No Authorization header"
   end
 
   local _, _, token = string.find(auth_header, "Bearer%s+(.+)")
 
-  if token == nil then
+  if not token then
     return token, "Missing token"
   end
 

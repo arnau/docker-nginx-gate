@@ -41,7 +41,7 @@ function M.auth(claim_spec)
   end
 
   local jwt_obj = jwt:verify(secret, token, claim_spec)
-  if jwt_obj.verified == false then
+  if not jwt_obj.verified then
     ngx.log(ngx.WARN, "Invalid token: " .. jwt_obj.reason)
     ngx.exit(ngx.HTTP_UNAUTHORIZED)
   end

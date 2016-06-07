@@ -39,7 +39,7 @@ function M.extract_token(auth_header)
   local _, _, token = string.find(auth_header, "Bearer%s+(.+)")
 
   if not token then
-    return token, "Missing token"
+    return nil, "Missing token"
   end
 
   return token, nil

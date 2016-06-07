@@ -33,8 +33,8 @@ function M.auth(claim_spec)
 
   if not claim_spec then
     claim_spec = {
-      sub = validators.opt_matches("^[a-z]+$"),
-      iss = validators.equals_any_of({ "local" }),
+      -- sub = validators.opt_matches("^[a-z]+$"),
+      -- iss = validators.equals_any_of({ "local" }),
       exp = validators.opt_is_not_expired(),
       __jwt = validators.require_one_of({ "iat" }),
     }

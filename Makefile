@@ -1,5 +1,6 @@
 VERSION = test
-IMAGE = arnau/guard:$(VERSION)
+IMAGE = arnau/nginx-gate:$(VERSION)
+JWT_SECRET ?= VGhpcyBzZWNyZXQgaXMgc3RvcmVkIGJhc2UtNjQgZW5jb2RlZCBvbiB0aGUgcHJveHkgaG9zdA
 
 build:
 	docker build -t $(IMAGE) .
@@ -7,7 +8,7 @@ build:
 
 install:
 	docker run -d \
-             --env JWT_SECRET="VGhpcyBzZWNyZXQgaXMgc3RvcmVkIGJhc2UtNjQgZW5jb2RlZCBvbiB0aGUgcHJveHkgaG9zdA" \
+             --env JWT_SECRET=$(JWT_SECRET) \
              --env JWT_SECRET_IS_BASE64_ENCODED=true \
              --publish 1080:80 \
              --publish 1443:443 \

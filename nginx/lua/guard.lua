@@ -1,6 +1,6 @@
 local jwt = require("resty.jwt")
 local validators = require("resty.jwt-validators")
-local cjson = require("cjson")
+local cjson = require("cjson.safe")
 local utils = require("utils")
 
 local secret = utils.consume_secret(os.getenv("JWT_SECRET"))

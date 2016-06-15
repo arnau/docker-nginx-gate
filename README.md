@@ -17,7 +17,7 @@ docker run -d --name gate \
            --env JWT_SECRET_IS_BASE64_ENCODED=true \
            -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf \
            -p 1080:80 \
-           arnau/gate
+           arnau/nginx-gate
 ```
 
 ## Development

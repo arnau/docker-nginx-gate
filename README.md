@@ -5,7 +5,7 @@ Docker image with Nginx with Lua enabled on Alpine to guard endpoints using
 
 ## Credits
 
-This is a mix of ideas and code coming from [Auth0's nginx-jwt](https://github.com/auth0/nginx-jwt/blob/v1.0.1/)
+This is a mix of ideas and code coming from [Auth0's nginx-jwt](https://github.com/auth0/nginx-jwt)
 and [SkyLothar's lua-resty-jwt](https://github.com/SkyLothar/lua-resty-jwt/)
 so, many thanks to them for all the work done.
 
